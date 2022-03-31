@@ -5,13 +5,13 @@ import 'package:flutter/widgets.dart';
 import 'package:productivejournal/domain/logger/interfaces/logger_interface.dart';
 import 'package:productivejournal/get_it_impl.dart';
 
-final logger = getIt<LoggerInterface>();
+final logs = getIt<LoggerInterface>();
 
 class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    logger.verbose(
+    logs.verbose(
       message: 'onChange(${bloc.runtimeType}, $change)',
     );
   }
@@ -22,7 +22,7 @@ class AppBlocObserver extends BlocObserver {
     Object error,
     StackTrace stackTrace,
   ) {
-    logger.information(
+    logs.information(
       message: 'onError(${bloc.runtimeType}',
       error: '$error',
       stack: stackTrace,
@@ -34,21 +34,17 @@ class AppBlocObserver extends BlocObserver {
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
 ) async {
-  FlutterError.onError = (details) {
-    logger.error(
-      error: details.exceptionAsString(),
-      stack: details.stack,
-    );
-  };
+  FlutterError.onError = (details) => logs.error(
+        error: details.exceptionAsString(),
+        stack: details.stack,
+      );
 
   await runZonedGuarded(
-    () async {
-      await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
-        blocObserver: AppBlocObserver(),
-      );
-    },
-    (error, stackTrace) => logger.error(
+    () async => BlocOverrides.runZoned(
+      () async => runApp(await builder()),
+      blocObserver: AppBlocObserver(),
+    ),
+    (error, stackTrace) => logs.error(
       error: error.toString(),
       stack: stackTrace,
     ),
