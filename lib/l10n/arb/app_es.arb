@@ -1,7 +1,8 @@
 {
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+  "@@locale": "es",
+  "@counterAppBarTitle": {
+    "description": "Texto mostrado en la AppBar de la página del contador"
+  },
+  "counterAppBarTitle": "Contador",
+  "currentSprint": "Sprint Actual"
 }

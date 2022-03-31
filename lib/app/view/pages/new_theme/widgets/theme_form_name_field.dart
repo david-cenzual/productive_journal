@@ -17,15 +17,18 @@ class ThemeNameFormField extends HookWidget {
     final nameController = useTextEditingController(
       text: BlocProvider.of<NewThemeBloc>(context).state.sprint.name,
     );
+
+    final isLoading = state.status == NewThemeStatus.initial ||
+        state.status == NewThemeStatus.themeNameLoading ||
+        state.status == NewThemeStatus.themeNameError;
+
     return TextFormField(
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Theme.of(context).colorScheme.background,
         border: OutlineInputBorder(
-          borderRadius: state.status == NewThemeStatus.initial ||
-                  state.status == NewThemeStatus.themeNameLoading ||
-                  state.status == NewThemeStatus.themeNameError
-              ? const BorderRadius.all(
-                  Radius.circular(10),
-                )
+          borderRadius: isLoading
+              ? const BorderRadius.all(Radius.circular(10))
               : const BorderRadius.only(
                   topRight: Radius.circular(10),
                   topLeft: Radius.circular(10),
@@ -34,22 +37,19 @@ class ThemeNameFormField extends HookWidget {
         suffixIcon: state.status == NewThemeStatus.themeNameLoading
             ? const LoadingWidget()
             : GestureDetector(
-                onTap: () => context.read<NewThemeBloc>().add(
-                      NewThemeNameSubmit(
-                        name: state.sprint.name,
-                      ),
-                    ),
-                child: const Icon(
-                  Icons.play_circle_outline_sharp,
-                ),
+                onTap: () => context
+                    .read<NewThemeBloc>()
+                    .add(NewThemeNameSubmit(name: state.sprint.name)),
+                child: const Icon(Icons.play_circle_outline_sharp),
               ),
         hintText: 'Theme name',
         hintStyle: TextStyle(
           color: Colors.grey.shade400,
         ),
       ),
-      onChanged: (_) =>
-          context.read<NewThemeBloc>().add(NewThemeNameChanged(name: _)),
+      onChanged: (currentName) => context
+          .read<NewThemeBloc>()
+          .add(NewThemeNameChanged(name: currentName)),
       controller: nameController,
     );
   }

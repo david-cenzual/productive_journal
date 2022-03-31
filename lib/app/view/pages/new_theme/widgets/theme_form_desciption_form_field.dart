@@ -20,6 +20,8 @@ class ThemeDescriptionFormField extends HookWidget {
 
     return TextFormField(
       decoration: InputDecoration(
+        filled: true,
+        fillColor: Theme.of(context).colorScheme.background,
         border: OutlineInputBorder(
           borderRadius: state.status == NewThemeStatus.themeDescriptionActive ||
                   state.status == NewThemeStatus.themeDescriptionLoading ||
