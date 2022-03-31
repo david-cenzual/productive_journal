@@ -7,6 +7,10 @@
 		<string>en</string>
 		<string>es</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Microphone usage for Agora SDK</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera usage for Agora SDK</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
