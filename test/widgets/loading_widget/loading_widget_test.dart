@@ -2,7 +2,7 @@ import 'package:fake_async/fake_async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:productivejournal/app/view/pages/shared/widgets/loading_widget.dart';
-import 'package:productivejournal/get_it_impl.dart';
+import 'package:productivejournal/locator.dart';
 
 void main() {
   setupGetIt();

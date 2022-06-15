@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614168834972",
+    "project_id": "pre-productive-journal",
+    "storage_bucket": "pre-productive-journal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614168834972:android:cd4fd84396a056f3610e59",
+        "android_client_info": {
+          "package_name": "com.dcl.prodjour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614168834972-g70dmsq5hrsddbrll8ap97c8t2i9h3ae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0mBV_FXVWGDdU4BsnxGiTmI4XfGmFVjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614168834972-g70dmsq5hrsddbrll8ap97c8t2i9h3ae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

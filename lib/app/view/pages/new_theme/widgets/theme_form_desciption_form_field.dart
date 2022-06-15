@@ -15,11 +15,12 @@ class ThemeDescriptionFormField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final descriptionController = useTextEditingController(
-      text: BlocProvider.of<NewThemeBloc>(context).state.sprint.description,
+      text: BlocProvider.of<NewThemeBloc>(context).state.sprint?.description,
     );
 
     return TextFormField(
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.only(left: 30),
         filled: true,
         fillColor: Theme.of(context).colorScheme.background,
         border: OutlineInputBorder(
@@ -37,7 +38,7 @@ class ThemeDescriptionFormField extends HookWidget {
             : GestureDetector(
                 onTap: () => context.read<NewThemeBloc>().add(
                       NewThemeDescriptionSubmit(
-                        description: state.sprint.description,
+                        description: state.sprint?.description,
                       ),
                     ),
                 child: const Icon(

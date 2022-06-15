@@ -15,7 +15,7 @@ class ThemeNameFormField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final nameController = useTextEditingController(
-      text: BlocProvider.of<NewThemeBloc>(context).state.sprint.name,
+      text: BlocProvider.of<NewThemeBloc>(context).state.sprint?.name,
     );
 
     final isLoading = state.status == NewThemeStatus.initial ||
@@ -24,7 +24,11 @@ class ThemeNameFormField extends HookWidget {
 
     return TextFormField(
       decoration: InputDecoration(
+        errorText: state.status == NewThemeStatus.themeNameError
+            ? '${state.errorDescription?.nameErrorDescription}'
+            : null,
         filled: true,
+        contentPadding: const EdgeInsets.only(left: 30),
         fillColor: Theme.of(context).colorScheme.background,
         border: OutlineInputBorder(
           borderRadius: isLoading
@@ -39,13 +43,11 @@ class ThemeNameFormField extends HookWidget {
             : GestureDetector(
                 onTap: () => context
                     .read<NewThemeBloc>()
-                    .add(NewThemeNameSubmit(name: state.sprint.name)),
+                    .add(NewThemeNameSubmit(name: state.sprint?.name)),
                 child: const Icon(Icons.play_circle_outline_sharp),
               ),
-        hintText: 'Theme name',
-        hintStyle: TextStyle(
-          color: Colors.grey.shade400,
-        ),
+        hintText: 'Name of the theme',
+        hintStyle: TextStyle(color: Colors.grey.shade400),
       ),
       onChanged: (currentName) => context
           .read<NewThemeBloc>()

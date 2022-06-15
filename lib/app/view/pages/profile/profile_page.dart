@@ -8,8 +8,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var name = 'Name';
-    var surname = 'Surname';
+    const name = 'Name';
+    const surname = 'Surname';
 
     return Scaffold(
       appBar: AppBar(

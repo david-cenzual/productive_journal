@@ -84,8 +84,8 @@ class LoadingWidget extends HookWidget {
                 animating: animating,
                 radius: radius,
               )
-            : Padding(
-                padding: const EdgeInsets.all(10),
+            : Container(
+                margin: EdgeInsets.all(radius),
                 child: CircularProgressIndicator(
                   key: key,
                   color: color.value,

@@ -16,21 +16,21 @@ class Sprint extends Equatable {
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
-      startDate: json['start_date'] as String,
-      endDate: json['end_date'] as String,
+      startDate: json['start_date'] as DateTime,
+      endDate: json['end_date'] as DateTime,
       objectives: json['objectives'] as List<Objective>,
     );
   }
 
-  final int id;
-  final String name;
-  final String description;
-  final String startDate;
-  final String endDate;
-  final List<Objective> objectives;
+  final int? id;
+  final String? name;
+  final String? description;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final List<Objective>? objectives;
 
-  Map<String, dynamic> toJson(Sprint sprint) {
-    return <String, dynamic>{
+  Map<String, Object?> toJson(Sprint sprint) {
+    return <String, Object?>{
       'id': sprint.id,
       'name': sprint.name,
       'description': sprint.description,
@@ -41,6 +41,6 @@ class Sprint extends Equatable {
   }
 
   @override
-  List<Object> get props =>
+  List<Object?> get props =>
       [id, name, description, startDate, endDate, objectives];
 }

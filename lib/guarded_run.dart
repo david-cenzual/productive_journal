@@ -2,18 +2,16 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:productivejournal/domain/logger/interfaces/logger_interface.dart';
-import 'package:productivejournal/get_it_impl.dart';
+import 'package:productivejournal/infrastructure/infrastructure.dart';
+import 'package:productivejournal/locator.dart';
 
-final logs = getIt<LoggerInterface>();
+final logs = locator<LoggerRepository>();
 
 class AppBlocObserver extends BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    logs.verbose(
-      message: 'onChange(${bloc.runtimeType}, $change)',
-    );
+    logs.verbose(message: 'onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
@@ -31,7 +29,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(
+Future<void> guardedRun(
   FutureOr<Widget> Function() builder,
 ) async {
   FlutterError.onError = (details) => logs.error(
